@@ -1,5 +1,7 @@
 # Deploy and Host Möbius with Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/mobius-v01-personal-ai-os?referralCode=20H68q)
+
 Run Möbius, the open-source personal AI OS, on your own Railway project. You chat with an agent (Claude Code or Codex, on the plan you already have) that builds small apps beside the conversation, runs scheduled tasks, and keeps a memory of how you work. Your login is created before the app goes online.
 
 ## About Hosting Möbius
