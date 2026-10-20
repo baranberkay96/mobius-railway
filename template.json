@@ -1,0 +1,84 @@
+{
+  "name": "Möbius v0.1 Personal AI OS",
+  "description": "Self-hosted AI agent that builds and runs apps for you, with memory.",
+  "category": "AI/ML",
+  "tags": [
+    "mobius",
+    "ai-agent",
+    "personal-ai",
+    "app-builder",
+    "claude-code",
+    "codex",
+    "pwa",
+    "self-hosted"
+  ],
+  "image": "https://cdn.jsdelivr.net/gh/mobius-os/mobius@c1e525f3239b73a0b899d7e7879a7fefce95c43c/frontend/public/moebius.png",
+  "upstream": {
+    "repo": "mobius-os/mobius",
+    "version": "0.1.0 (declared in frontend/package.json and the FastAPI app; upstream publishes no releases)",
+    "commit": "c1e525f3239b73a0b899d7e7879a7fefce95c43c",
+    "committed": "2026-10-19",
+    "image": "ghcr.io/mobius-os/mobius:sha-c1e525f3239b73a0b899d7e7879a7fefce95c43c@sha256:e7b6da2a45ee2869e6b2e53bf532b7e5544adbf6aa5ad07439f70eefd3dcfbf2",
+    "checked": "2026-10-20"
+  },
+  "services": {
+    "Mobius": {
+      "icon": "https://cdn.jsdelivr.net/gh/mobius-os/mobius@c1e525f3239b73a0b899d7e7879a7fefce95c43c/frontend/public/moebius.png",
+      "source": {
+        "repo": "baranberkay96/mobius-railway",
+        "rootDirectory": "/services/mobius"
+      },
+      "startCommand": null,
+      "preDeployCommand": null,
+      "healthcheckPath": "/api/ready",
+      "healthcheckTimeout": 600,
+      "restartPolicyType": "ALWAYS",
+      "numReplicas": 1,
+      "cronSchedule": null,
+      "publicDomain": true,
+      "targetPort": 8000,
+      "tcpProxy": null,
+      "volume": {
+        "mountPath": "/data"
+      },
+      "variables": {
+        "PORT": {
+          "defaultValue": "8000",
+          "description": "Port of the Möbius web app and API. Railway's healthcheck and the public domain use it; keep 8000 unless you also change the domain's target port.",
+          "required": false
+        },
+        "MOBIUS_OWNER_USERNAME": {
+          "defaultValue": "owner-${{secret(8, \"abcdefghijkmnpqrstuvwxyz23456789\")}}",
+          "description": "Owner login name, generated at deploy and created before the app goes online. Random on purpose (failed logins put a cooldown on a username). Change it to rename the login on the next deploy.",
+          "required": false
+        },
+        "MOBIUS_OWNER_PASSWORD": {
+          "defaultValue": "${{secret(32)}}",
+          "description": "Owner password (12+ characters), generated at deploy. Changing it here resets the login on the next deploy and signs out every session; a password changed inside Möbius is kept until this changes.",
+          "required": false
+        },
+        "MOBIUS_AGENT_SUDO": {
+          "defaultValue": "1",
+          "description": "1 (upstream default) gives the agent passwordless root inside the container, e.g. to install packages; 0 removes it. Takes effect on the next deploy.",
+          "required": false
+        },
+        "DOMAIN": {
+          "defaultValue": "",
+          "description": "Optional. Your custom domain as a bare host name (e.g. ai.example.com), once it is attached to this service. Empty = the Railway domain.",
+          "required": false
+        },
+        "MOBIUS_SERVICE_GATEWAY_ORIGIN": {
+          "defaultValue": "",
+          "description": "Optional. https:// origin of a second custom domain on this service, used only for full web services you opt in (local-services.json). Empty = off.",
+          "required": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "15",
+          "description": "Seconds the old container gets to finish replies before a redeploy stops it (upstream's value; its server drains for 10 s).",
+          "required": false
+        }
+      }
+    }
+  },
+  "buckets": []
+}
