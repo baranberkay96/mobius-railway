@@ -1,5 +1,6 @@
 {
-  "name": "Möbius v0.1 Personal AI OS",
+  "name": "Möbius Personal AI OS",
+  "idSeed": "Möbius v0.1 Personal AI OS",
   "description": "Self-hosted AI agent that builds and runs apps for you, with memory.",
   "category": "AI/ML",
   "tags": [

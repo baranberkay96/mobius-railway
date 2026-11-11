@@ -1,10 +1,10 @@
-# Möbius v0.1 Personal AI OS: Railway template spec
+# Möbius Personal AI OS: Railway template spec
 
 ## Listing
 
 | Field | Value |
 |---|---|
-| Name | **Möbius v0.1 Personal AI OS** (`v0.1` = the version upstream declares in `frontend/package.json` and the FastAPI app, `0.1.0`; upstream publishes no releases, builds are identified by commit) |
+| Name | **Möbius Personal AI OS** (`v0.1` = the version upstream declares in `frontend/package.json` and the FastAPI app, `0.1.0`; upstream publishes no releases, builds are identified by commit) |
 | Description | Self-hosted AI agent that builds and runs apps for you, with memory. (68 chars, unchanged) |
 | Category | AI/ML |
 | Tags | mobius, ai-agent, personal-ai, app-builder, claude-code, codex, pwa, self-hosted |
